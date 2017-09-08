@@ -51,6 +51,16 @@
     <com.android.settingslib.widget.UntitledPreferenceCategory
         android:order="-120"
         android:key="top_level_personalize_category">
+
+        <com.android.settings.widget.HomepagePreference
+            android:fragment="com.custom.settings.CustomSettings"
+            android:icon="@drawable/ic_settings_custom_filled"
+            android:key="top_level_custom"
+            android:order="-100"
+            android:title="@string/custom_dashboard_title"
+            android:summary="@string/custom_dashboard_summary"
+            settings:controller="com.custom.settings.TopLevelCustomSettingsPreferenceController"/>
+            
         <com.android.settings.widget.HomepagePreference
             android:fragment="com.android.settings.applications.AppDashboardFragment"
             android:icon="@drawable/ic_homepage_apps"

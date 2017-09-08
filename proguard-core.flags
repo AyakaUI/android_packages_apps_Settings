@@ -1,0 +1,2 @@
+# CustomSettings
+-keep class com.custom.settings.**
