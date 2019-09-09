@@ -16,7 +16,9 @@
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
-    <!-- Flavor -->                                                                         <string name="flavor_version">FlavorOS version</string>
+    <!-- Ayaka -->
+    <string name="ayaka_version">AyakaUI version</string>
+    <string name="build_date">Build date</string>
 
     <!-- Refresh rate -->
     <string name="refresh_rate_title">Refresh rate</string>
@@ -31,8 +33,8 @@
     <string name="copied_to_clipboard">Copied to clipboard</string>
     <string name="longpress_to_clipboard">Long-press to copy</string>
 
-    <!-- Flavor Lab Settings -->
-    <string name="lab_settings_title">Flavor Lab</string>
+    <!-- Ayaka Lab Settings -->
+    <string name="lab_settings_title">Ayaka Lab</string>
 
     <!-- Google Play Integrity Spoof -->
     <string name="pi_spoof_title">Google Play Integrity spoof</string>
