@@ -29,32 +29,32 @@ import com.android.settingslib.metadata.PreferenceMetadata
 import com.android.settingslib.metadata.PreferenceSummaryProvider
 import com.android.settingslib.preference.PreferenceBinding
 
-class FlavorVersionPreference :
+class AyakaVersionPreference :
     PreferenceMetadata,
     PreferenceAvailabilityProvider,
     PreferenceSummaryProvider,
     PreferenceBinding {
 
-    val KEY_FLAVOR_VERSION = "ro.flavor.version"
+    val KEY_AYAKA_VERSION = "ro.ayaka.version"
 
     private var currentVersion: String? = null
 
     override val key: String
-        get() = "flavor_version"
+        get() = "ayaka_version"
 
     override val title: Int
-        get() = R.string.flavor_version
+        get() = R.string.ayaka_version
 
     override fun intent(context: Context): Intent? =
         Intent(Intent.ACTION_VIEW)
-            .setData(Uri.parse("https://github.com/FlavorPixel-AOSP"))
+            .setData(Uri.parse("https://github.com/AyakaUI"))
 
     override fun isAvailable(context: Context) = context.getVersion().isNotEmpty()
 
     override fun getSummary(context: Context) = context.getVersion()
 
     private fun Context.getVersion(): String =
-        SystemProperties.get(KEY_FLAVOR_VERSION, getString(R.string.unknown))
+        SystemProperties.get(KEY_AYAKA_VERSION, getString(R.string.unknown))
 
     override fun bind(preference: Preference, metadata: PreferenceMetadata) {
         super.bind(preference, metadata)
