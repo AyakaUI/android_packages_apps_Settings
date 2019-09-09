@@ -21,7 +21,16 @@
     android:title="@string/firmware_version"
     settings:keywords="@string/keywords_android_version">
 
-    <!-- Android version -->
+    <!-- AyakaUI version -->
+    <Preference
+        android:key="ayaka_version"
+        android:title="@string/ayaka_version"
+        android:summary="@string/summary_placeholder"
+	settings:enableCopying="true"
+        settings:searchable="false"
+	settings:controller="com.android.settings.deviceinfo.firmwareversion.AyakaVersionPreference" />
+
+    <!-- Android version --> 
     <Preference
         android:key="os_firmware_version"
         android:title="@string/firmware_version"
@@ -61,7 +70,15 @@
         android:summary="@string/summary_placeholder"
         android:selectable="false"
         settings:enableCopying="true"
-        settings:controller="com.android.settings.deviceinfo.firmwareversion.KernelVersionPreferenceController"/>
+	settings:controller="com.android.settings.deviceinfo.firmwareversion.KernelVersionPreferenceController"/>
+
+    <!-- Build date -->
+    <Preference
+	android:key="os_build_date"
+	android:title="@string/build_date"
+	android:summary="@string/summary_placeholder"
+	settings:enableCopying="true"
+	settings:controller="com.android.settings.deviceinfo.firmwareversion.AyakaBuildDatePreference"/>
 
     <!-- Build -->
     <Preference

@@ -70,11 +70,13 @@ open class FirmwareVersionScreen : PreferenceScreenMixin, PreferenceSummaryProvi
 
     override fun getPreferenceHierarchy(context: Context, coroutineScope: CoroutineScope) =
         preferenceHierarchy(context) {
+            +AyakaVersionPreference()
             +FirmwareVersionDetailPreference()
             +SecurityPatchLevelPreference()
             +MainlineModuleVersionPreference()
             +BasebandVersionPreference()
             +KernelVersionPreference()
+	    +AyakaBuildDatePreference()
             +SimpleBuildNumberPreference()
         }
 
