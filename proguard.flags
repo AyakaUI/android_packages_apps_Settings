@@ -70,5 +70,5 @@
 # Keep the com.android.settings.media_drm.FakeFeatureFlagsImpl
 -keep class com.android.settings.media_drm.FakeFeatureFlagsImpl { *; }
 
-# FlavorLab
--keep class com.android.settings.flavor.**
+# AyakaLab
+-keep class com.android.settings.ayaka.**

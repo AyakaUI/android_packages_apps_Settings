@@ -147,5 +147,5 @@
         android:title="@string/lab_settings_title"
         android:icon="@drawable/ic_lab_settings"
         android:order="-25"
-        android:fragment="com.android.settings.flavor.LabSettings"/>
+        android:fragment="com.android.settings.ayaka.LabSettings"/>
 </PreferenceScreen>

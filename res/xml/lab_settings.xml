@@ -11,7 +11,7 @@
             android:summary="@string/pi_spoof_summary"
             android:defaultValue="true" />
 
-    <com.android.settings.flavor.KeyboxDataPreference
+    <com.android.settings.ayaka.KeyboxDataPreference
         android:key="keybox_data_setting"
         android:title="@string/keybox_data_title"
         android:summary="@string/keybox_data_summary"

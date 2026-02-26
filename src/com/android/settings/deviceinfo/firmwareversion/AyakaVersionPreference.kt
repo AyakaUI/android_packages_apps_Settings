@@ -54,7 +54,7 @@ class AyakaVersionPreference :
     override fun getSummary(context: Context) = context.getVersion()
 
     private fun Context.getVersion(): String =
-        SystemProperties.get(KEY_FLAVOR_VERSION, getString(R.string.unknown))
+        SystemProperties.get(KEY_AYAKA_VERSION, getString(R.string.unknown))
 
     override fun bind(preference: Preference, metadata: PreferenceMetadata) {
         super.bind(preference, metadata)

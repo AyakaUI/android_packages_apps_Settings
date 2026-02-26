@@ -1,4 +1,4 @@
-package com.android.settings.flavor;
+package com.android.settings.ayaka;
 
 import android.content.Context;
 import android.content.Intent;

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.android.settings.flavor;
+package com.android.settings.ayaka;
 
 import android.os.Bundle;
 import android.app.Activity;
