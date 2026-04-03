@@ -269,6 +269,10 @@
     <string name="hide_developer_status_title">Hide developer status</string>
     <string name="hide_developer_status_summary">Hide developer status to selected apps</string>
 
+    <!-- Ayaka Maintainer -->
+    <string name="ayaka_summary">Maintainer</string>
+    <string name="ayaka_maintainer"></string>
+
     <!-- Incall vibrate options -->
     <string name="incall_vibration_category">In-call vibration options</string>
     <string name="incall_vibrate_connect_title">Vibrate on connect</string>
