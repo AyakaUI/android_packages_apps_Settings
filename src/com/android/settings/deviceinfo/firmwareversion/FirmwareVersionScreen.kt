@@ -72,6 +72,7 @@ open class FirmwareVersionScreen : PreferenceScreenMixin, PreferenceSummaryProvi
         preferenceHierarchy(context) {
             +FirmwareVersionDetailPreference()
             +AyakaVersionPreference()
+	    +AyakaMaintainerPreference()
             +SecurityPatchLevelPreference()
             +MainlineModuleVersionPreference()
             +BasebandVersionPreference()
