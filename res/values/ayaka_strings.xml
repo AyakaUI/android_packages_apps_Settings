@@ -20,4 +20,8 @@
     <string name="ayaka_version">AyakaUI version</string>
     <string name="build_date">Build date</string>
 
+    <!-- Ayaka Maintainer -->
+    <string name="ayaka_maintainer">Maintainer</string>
+    <string name="ayaka_summary"></string>
+
 </resources>
