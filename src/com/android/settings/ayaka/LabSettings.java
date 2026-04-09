@@ -33,14 +33,19 @@ import com.android.settings.SettingsPreferenceFragment;
 public class LabSettings extends SettingsPreferenceFragment {
 
     private static final String KEYBOX_DATA_KEY = "keybox_data_setting";
+    private static final String PIF_DATA_KEY = "pif_data_setting";
+
     private ActivityResultLauncher<Intent> mKeyboxFilePickerLauncher;
+    private ActivityResultLauncher<Intent> mPifFilePickerLauncher;
     private KeyboxDataPreference mKeyboxDataPreference;
+    private PifDataPreference mPifDataPreference;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         addPreferencesFromResource(R.xml.lab_settings);
+
         mKeyboxFilePickerLauncher = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),
             result -> {
@@ -53,16 +58,34 @@ public class LabSettings extends SettingsPreferenceFragment {
                 }
             }
 	);
-    }
 
+        mPifFilePickerLauncher = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            result -> {
+                if (result.getResultCode() == Activity.RESULT_OK && result.getData() != null) {
+                    Uri uri = result.getData().getData();
+                    Preference pref = findPreference(PIF_DATA_KEY);
+                    if (pref instanceof PifDataPreference) {
+                        ((PifDataPreference) pref).handleFileSelected(uri);
+                    }
+                }
+            }
+        );
+    }
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
         mKeyboxDataPreference = findPreference(KEYBOX_DATA_KEY);
+	mPifDataPreference = findPreference(PIF_DATA_KEY);
+
         if (mKeyboxDataPreference != null) {
             mKeyboxDataPreference.setFilePickerLauncher(mKeyboxFilePickerLauncher);
+        }
+
+	if (mPifDataPreference != null) {
+            mPifDataPreference.setFilePickerLauncher(mPifFilePickerLauncher);
         }
     }
 

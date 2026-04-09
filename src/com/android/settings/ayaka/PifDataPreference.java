@@ -1,4 +1,4 @@
-package com.android.settings.development;
+package com.android.settings.ayaka;
 
 import android.app.ActivityManager;
 import android.content.Context;
