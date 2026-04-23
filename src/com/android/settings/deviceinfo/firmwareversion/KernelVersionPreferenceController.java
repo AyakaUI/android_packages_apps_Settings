@@ -69,8 +69,7 @@ public class KernelVersionPreferenceController extends BasePreferenceController 
             fullKernelVersion = true;
         }
 
-        preference.notifyChanged();
-        return true;
+        return false;
     }
 
     private String getFullKernelVersion() {
