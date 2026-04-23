@@ -7,4 +7,7 @@ public class VersionUtils {
   public static String getCustomVersion() {
     return SystemProperties.get("ro.custom.version", "");
   }
+  public static String getBuildTags() {
+        return SystemProperties.get("ro.build.tags", "");
+  }
 }
