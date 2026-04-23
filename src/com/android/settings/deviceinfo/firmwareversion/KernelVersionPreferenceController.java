@@ -57,16 +57,18 @@ public class KernelVersionPreferenceController extends BasePreferenceController 
 
     @Override
     public boolean handlePreferenceTreeClick(Preference preference) {
-        if (!TextUtils.equals(preference.getKey(), KEY_KERNEL_VERSION)) {
+        if (!TextUtils.equals(preference.getKey(), getPreferenceKey())) {
             return false;
         }
-        if(fullKernelVersion) {
+
+        if (fullKernelVersion) {
             preference.setSummary(DeviceInfoUtils.getFormattedKernelVersion(mContext));
             fullKernelVersion = false;
         } else {
             preference.setSummary(getFullKernelVersion());
             fullKernelVersion = true;
         }
+
         return false;
     }
 
@@ -89,11 +91,8 @@ public class KernelVersionPreferenceController extends BasePreferenceController 
      * @throws IOException if the file couldn't be read
      */
     private static String readLine(String filename) throws IOException {
-        BufferedReader reader = new BufferedReader(new FileReader(filename), 256);
-        try {
+        try (BufferedReader reader = new BufferedReader(new FileReader(filename), 256)) {
             return reader.readLine();
-        } finally {
-            reader.close();
         }
     }
 }
