@@ -49,9 +49,10 @@ class SimpleBuildNumberPreference :
         val bidi = BidiFormatter.getInstance(isRtl)
 
         val customVersion = VersionUtils.getCustomVersion()
+	val buildTags = VersionUtils.getBuildTags()
 
         return buildString {
-          append(bidi.unicodeWrap(Build.DISPLAY))
+          append(bidi.unicodeWrap(Build.DISPLAY) + " " + buildTags)
           if (customVersion.isNotEmpty()) {
             append("\n")
             append(customVersion)
