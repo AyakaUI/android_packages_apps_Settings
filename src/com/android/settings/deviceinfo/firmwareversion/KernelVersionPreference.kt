@@ -26,9 +26,12 @@ import com.android.settingslib.metadata.PreferenceMetadata
 import com.android.settingslib.metadata.PreferenceSummaryProvider
 import com.android.settingslib.metadata.SensitivityLevel
 import com.android.settingslib.preference.PreferenceBinding
+import java.io.File
 
 // LINT.IfChange
 class KernelVersionPreference : PersistentPreference<String>, PreferenceMetadata, PreferenceSummaryProvider, PreferenceBinding {
+
+    private var isFullVersionShown = false
 
     override val key: String
         get() = "kernel_version"
@@ -50,8 +53,28 @@ class KernelVersionPreference : PersistentPreference<String>, PreferenceMetadata
 
     override fun bind(preference: Preference, metadata: PreferenceMetadata) {
         super.bind(preference, metadata)
-        preference.isSelectable = false
+        
+        preference.isSelectable = true
         preference.isCopyingEnabled = true
+
+        preference.onPreferenceClickListener = Preference.OnPreferenceClickListener {
+            if (isFullVersionShown) {
+                preference.summary = DeviceInfoUtils.getFormattedKernelVersion(preference.context)
+                isFullVersionShown = false
+            } else {
+                preference.summary = getFullKernelVersion()
+                isFullVersionShown = true
+            }
+            true
+        }
+    }
+
+    private fun getFullKernelVersion(): String {
+        return try {
+            File("/proc/version").readText().trim()
+        } catch (e: Exception) {
+            "Unavailable"
+        }
     }
 
     override val sensitivityLevel
