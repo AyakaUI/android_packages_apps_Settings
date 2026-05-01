@@ -55,4 +55,8 @@
     <string name="pif_data_title">Configure PIF JSON</string>
     <string name="pif_data_summary">Configure PIF JSON used to spoof properties for GMS and the Play Store. Tap Delete to revert to dynamic defaults.</string>
 
+    <!-- Allow application downgrade -->
+    <string name="lab_app_downgrade_title">Allow application downgrade</string>
+    <string name="lab_app_downgrade_summary">Allow downgrading system applications, which may result in crashes and data loss</string>
+
 </resources>

@@ -34,6 +34,13 @@
         	android:key="hide_developer_status_settings"
         	android:title="@string/hide_developer_status_title"
         	android:summary="@string/hide_developer_status_summary"
-        	android:fragment="com.android.settings.development.HideDeveloperStatusSettings"/>
+		android:fragment="com.android.settings.development.HideDeveloperStatusSettings"/>
+
+	<!-- Allow application downgrade -->
+    	<com.android.settings.custom.preference.GlobalSettingSwitchPreference
+        	android:key="pm_downgrade_allowed"
+        	android:title="@string/lab_app_downgrade_title"
+        	android:summary="@string/lab_app_downgrade_summary"
+        	android:defaultValue="false" />
 
 </PreferenceScreen>
