@@ -417,4 +417,10 @@
     <string name="software_update_up_to_date_header">Your Pixel is up to date</string>
     <string name="software_update_up_to_specific_date_summary">Updated to %1$s</string>
     <string name="system_update_entry_title">System update</string>
+
+    <!-- Per-app GPU composition -->
+    <string name="use_gpu_for_screen_composition_title">Use GPU for screen composition</string>
+    <string name="use_gpu_for_screen_composition_summary">Select apps that should disable HW overlays while in use</string>
+    <string name="use_gpu_for_screen_composition_turn_on_all">Turn on for all apps</string>
+    <string name="use_gpu_for_screen_composition_turn_off_all">Turn off for all apps</string>
 </resources>
