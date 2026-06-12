@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -16,10 +16,12 @@
 
 package com.android.settings.ayaka;
 
-import android.os.Bundle;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Bundle;
+import android.provider.Settings;
 import android.view.View;
 
 import androidx.activity.result.ActivityResultLauncher;
@@ -30,15 +32,20 @@ import com.android.internal.logging.nano.MetricsProto;
 import com.android.settings.R;
 import com.android.settings.SettingsPreferenceFragment;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 public class LabSettings extends SettingsPreferenceFragment {
 
     private static final String KEYBOX_DATA_KEY = "keybox_data_setting";
     private static final String PIF_DATA_KEY = "pif_data_setting";
+    private static final String VIEW_PIF_PROPS_KEY = "view_pif_props";
 
     private ActivityResultLauncher<Intent> mKeyboxFilePickerLauncher;
     private ActivityResultLauncher<Intent> mPifFilePickerLauncher;
     private KeyboxDataPreference mKeyboxDataPreference;
     private PifDataPreference mPifDataPreference;
+    private Preference mViewPifPropertiesPreference;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -57,7 +64,7 @@ public class LabSettings extends SettingsPreferenceFragment {
                     }
                 }
             }
-	);
+        );
 
         mPifFilePickerLauncher = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),
@@ -78,15 +85,59 @@ public class LabSettings extends SettingsPreferenceFragment {
         super.onViewCreated(view, savedInstanceState);
 
         mKeyboxDataPreference = findPreference(KEYBOX_DATA_KEY);
-	mPifDataPreference = findPreference(PIF_DATA_KEY);
+        mPifDataPreference = findPreference(PIF_DATA_KEY);
+        mViewPifPropertiesPreference = findPreference(VIEW_PIF_PROPS_KEY);
 
         if (mKeyboxDataPreference != null) {
             mKeyboxDataPreference.setFilePickerLauncher(mKeyboxFilePickerLauncher);
         }
 
-	if (mPifDataPreference != null) {
+        if (mPifDataPreference != null) {
             mPifDataPreference.setFilePickerLauncher(mPifFilePickerLauncher);
         }
+
+        if (mViewPifPropertiesPreference != null) {
+            mViewPifPropertiesPreference.setOnPreferenceClickListener(preference -> {
+                showPifPropsDialog();
+                return true;
+            });
+        }
+    }
+
+    private void showPifPropsDialog() {
+        String fetchedPif = Settings.Secure.getString(getContext().getContentResolver(), "fetched_pif");
+        String pifData = Settings.Secure.getString(getContext().getContentResolver(), "pif_data");
+
+        StringBuilder sb = new StringBuilder();
+        sb.append("--- Auto-updated PIF (GitHub) ---\n");
+        if (fetchedPif != null && !fetchedPif.isEmpty()) {
+            try {
+                JSONObject json = new JSONObject(fetchedPif);
+                sb.append(json.toString(4));
+            } catch (JSONException e) {
+                sb.append(fetchedPif);
+            }
+        } else {
+            sb.append("No data downloaded automatically.\n");
+        }
+
+        sb.append("\n\n--- Manually Imported PIF ---\n");
+        if (pifData != null && !pifData.isEmpty()) {
+            try {
+                JSONObject json = new JSONObject(pifData);
+                sb.append(json.toString(4));
+            } catch (JSONException e) {
+                sb.append(pifData);
+            }
+        } else {
+            sb.append("No manual JSON imports.");
+        }
+
+        new AlertDialog.Builder(getContext())
+                .setTitle("Play Integrity Fix Status")
+                .setMessage(sb.toString())
+                .setPositiveButton(android.R.string.ok, null)
+                .show();
     }
 
     @Override

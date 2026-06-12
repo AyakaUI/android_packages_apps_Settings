@@ -23,6 +23,11 @@
             	android:summary="@string/pif_data_summary"
             	android:defaultValue=""/>
 
+	<Preference
+		android:key="view_pif_props"
+	    	android:title="View props of the PIF"
+	    	android:summary="Displays the current JSON downloaded from GitHub or imported" />
+
 	<com.android.settings.custom.preference.SecureSettingSwitchPreference
 	        android:order="92"
         	android:key="window_ignore_secure"
