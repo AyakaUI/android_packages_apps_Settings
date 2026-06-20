@@ -59,4 +59,8 @@
     <string name="lab_app_downgrade_title">Allow application downgrade</string>
     <string name="lab_app_downgrade_summary">Allow downgrading system applications, which may result in crashes and data loss</string>
 
+    <string name="spoof_category_integrity">Integrity</string>
+    <string name="spoof_category_pif_keybox">Pif / KeyBox</string>
+    <string name="spoof_category_misc">Miscellaneous</string>
+
 </resources>

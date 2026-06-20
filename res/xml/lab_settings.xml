@@ -4,30 +4,39 @@
         android:key="lab_settings"
         android:title="@string/lab_settings_title">
 
-	<!-- Google Play Integrity -->
+	<PreferenceCategory
+	android:title="@string/spoof_category_integrity">
+
+	<!-- google play integrity -->
         <com.android.settings.custom.preference.SystemPropertySwitchPreference
             	android:key="persist.sys.pihooks.pi"
             	android:title="@string/pi_spoof_title"
             	android:summary="@string/pi_spoof_summary"
-            	android:defaultValue="true"/>
-
-	<com.android.settings.ayaka.KeyboxDataPreference
-		android:key="keybox_data_setting"
-		android:title="@string/keybox_data_title"
-		android:summary="@string/keybox_data_summary"
-		android:defaultValue=""/>
-
-        <com.android.settings.ayaka.PifDataPreference
-            	android:key="pif_data_setting"
-            	android:title="@string/pif_data_title"
-            	android:summary="@string/pif_data_summary"
-            	android:defaultValue=""/>
+		android:defaultValue="false"/>
 
 	<Preference
 		android:key="view_pif_props"
 	    	android:title="View props of the PIF"
 	    	android:summary="Displays the current JSON downloaded from GitHub or imported" />
+	</PreferenceCategory>
+	<PreferenceCategory
+	android:title="@string/spoof_category_pif_keybox">
 
+	<!-- PIF & KeyBox -->
+	<com.android.settings.ayaka.KeyboxDataPreference
+		android:key="keybox_data_setting"
+		android:title="@string/keybox_data_title"
+		android:summary="@string/keybox_data_summary"/>
+
+        <com.android.settings.ayaka.PifDataPreference
+            	android:key="pif_data_setting"
+            	android:title="@string/pif_data_title"
+            	android:summary="@string/pif_data_summary"/>
+	</PreferenceCategory>
+	<PreferenceCategory
+	android:title="@string/spoof_category_misc">
+
+	<!-- Miscellaneous -->
 	<com.android.settings.custom.preference.SecureSettingSwitchPreference
 	        android:order="92"
         	android:key="window_ignore_secure"
@@ -46,6 +55,7 @@
         	android:key="pm_downgrade_allowed"
         	android:title="@string/lab_app_downgrade_title"
         	android:summary="@string/lab_app_downgrade_summary"
-        	android:defaultValue="false" />
+		android:defaultValue="false" />
+	</PreferenceCategory>
 
 </PreferenceScreen>
