@@ -60,5 +60,6 @@ class AyakaMaintainerPreference :
     override fun bind(preference: Preference, metadata: PreferenceMetadata) {
         super.bind(preference, metadata)
         preference.isCopyingEnabled = true
+	preference.setTitle(R.string.ayaka_maintainer)
     }
 }
