@@ -33,7 +33,7 @@ class AyakaMaintainerPreference :
     PreferenceSummaryProvider,
     PreferenceBinding {
 
-    private val KEY_AYAKA_MAINTAINER = "ro.ayaka.maintainer"
+    private var currentMaintainer: String? = null
 
     override val key: String
         get() = "ayaka_maintainer"
@@ -55,11 +55,13 @@ class AyakaMaintainerPreference :
     override fun getSummary(context: Context) = context.getMaintainer()
 
     private fun Context.getMaintainer(): String =
-        SystemProperties.get(KEY_AYAKA_MAINTAINER, getString(R.string.unknown))
+        currentMaintainer
+            ?: SystemProperties.get("ro.ayaka.maintainer", "").also { 
+                currentMaintainer = it 
+            }
 
     override fun bind(preference: Preference, metadata: PreferenceMetadata) {
         super.bind(preference, metadata)
         preference.isCopyingEnabled = true
-	preference.setTitle(R.string.ayaka_maintainer)
     }
 }
