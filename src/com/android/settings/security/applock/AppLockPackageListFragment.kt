@@ -28,7 +28,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.preference.Preference
 
 import com.android.internal.logging.nano.MetricsProto
-import com.android.internal.util.hertzify.HertzifyUtils
+import com.android.internal.util.custom.CustomUtils
 
 import com.android.settings.R
 import com.android.settings.core.SubSettingLauncher
@@ -54,7 +54,7 @@ class AppLockPackageListFragment : DashboardFragment() {
         super.onAttach(context)
         appLockManager = context.getSystemService(AppLockManager::class.java)!!
         pm = context.packageManager
-        launchablePackages = HertzifyUtils.launchablePackages(context)
+        launchablePackages = CustomUtils.launchablePackages(context)
         whiteListedPackages = resources.getStringArray(
             com.android.internal.R.array.config_appLockAllowedSystemApps)
     }
