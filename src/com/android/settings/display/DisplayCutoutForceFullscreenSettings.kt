@@ -44,7 +44,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 
-import com.android.internal.util.hertzify.CutoutFullscreenController
+import com.android.internal.util.custom.CutoutFullscreenController
 
 import com.android.settings.R
 import com.android.settings.SettingsActivity

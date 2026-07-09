@@ -22,7 +22,7 @@ import android.os.UserHandle;
 
 import com.android.settings.core.BasePreferenceController;
 
-import com.android.internal.util.hertzify.CutoutFullscreenController;
+import com.android.internal.util.custom.CutoutFullscreenController;
 
 public class DisplayCutoutForceFullscreenPreferenceController extends BasePreferenceController {
 
