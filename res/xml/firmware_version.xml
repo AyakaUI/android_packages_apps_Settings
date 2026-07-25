@@ -21,6 +21,12 @@
     android:title="@string/firmware_version"
     settings:keywords="@string/keywords_android_version">
 
+    <!-- AyakaUI logo -->
+    <com.android.settingslib.widget.LayoutPreference
+        android:layout="@layout/ayaka_logo"
+        android:key="ayaka_logo"
+        android:selectable="false" />
+
     <!-- AyakaUI version -->
     <Preference
         android:key="ayaka_version"
