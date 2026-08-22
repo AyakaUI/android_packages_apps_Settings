@@ -25,6 +25,7 @@ import com.android.settings.R
 import com.android.settingslib.metadata.PreferenceAvailabilityProvider
 import com.android.settingslib.metadata.PreferenceMetadata
 import com.android.settingslib.metadata.PreferenceSummaryProvider
+import com.android.settingslib.metadata.preferencesapi.preconditions.PreconditionStability
 import com.android.settingslib.preference.PreferenceBinding
 
 class AyakaMaintainerPreference :
@@ -38,24 +39,42 @@ class AyakaMaintainerPreference :
     override val key: String
         get() = "ayaka_maintainer"
 
+    override val purpose: Int
+        get() = R.string.ayaka_maintainer
+
     override val title: Int
         get() = R.string.ayaka_maintainer
 
+    override val availabilityDescription: String
+        get() = "Requires AyakaUI maintainer property"
+
+    override fun getAvailabilityStability(): PreconditionStability =
+        PreconditionStability.STABLE_UNTIL_APK_UPDATE
+
     override fun intent(context: Context): Intent? {
         val maintainer = context.getMaintainer()
-        if (maintainer == context.getString(R.string.unknown) || maintainer.isEmpty()) {
+
+        if (maintainer == context.getString(R.string.unknown) ||
+            maintainer.isEmpty()
+        ) {
             return null
         }
+
         return Intent(Intent.ACTION_VIEW)
             .setData(Uri.parse("https://github.com/$maintainer"))
     }
 
-    override fun isAvailable(context: Context) = context.getMaintainer().isNotEmpty()
+    override fun isAvailable(context: Context): Boolean =
+        context.getMaintainer().isNotEmpty()
 
-    override fun getSummary(context: Context) = context.getMaintainer()
+    override fun getSummary(context: Context): CharSequence =
+        context.getMaintainer()
 
     private fun Context.getMaintainer(): String =
-        SystemProperties.get(KEY_AYAKA_MAINTAINER, getString(R.string.unknown))
+        SystemProperties.get(
+            KEY_AYAKA_MAINTAINER,
+            getString(R.string.unknown)
+        )
 
     override fun bind(preference: Preference, metadata: PreferenceMetadata) {
         super.bind(preference, metadata)

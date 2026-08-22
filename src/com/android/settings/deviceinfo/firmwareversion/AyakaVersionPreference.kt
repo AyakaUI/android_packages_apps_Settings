@@ -22,11 +22,10 @@ import android.net.Uri
 import android.os.SystemProperties
 import androidx.preference.Preference
 import com.android.settings.R
-import com.android.settings.utils.getLocale
-import com.android.settingslib.DeviceInfoUtils
 import com.android.settingslib.metadata.PreferenceAvailabilityProvider
 import com.android.settingslib.metadata.PreferenceMetadata
 import com.android.settingslib.metadata.PreferenceSummaryProvider
+import com.android.settingslib.metadata.preferencesapi.preconditions.PreconditionStability
 import com.android.settingslib.preference.PreferenceBinding
 
 class AyakaVersionPreference :
@@ -35,26 +34,38 @@ class AyakaVersionPreference :
     PreferenceSummaryProvider,
     PreferenceBinding {
 
-    val KEY_AYAKA_VERSION = "ro.ayaka.version"
-
-    private var currentVersion: String? = null
+    private val KEY_AYAKA_VERSION = "ro.ayaka.version"
 
     override val key: String
         get() = "ayaka_version"
 
+    override val purpose: Int
+        get() = R.string.ayaka_version
+
     override val title: Int
         get() = R.string.ayaka_version
+
+    override val availabilityDescription: String
+        get() = "Requires AyakaUI version property"
+
+    override fun getAvailabilityStability(): PreconditionStability =
+        PreconditionStability.STABLE_UNTIL_APK_UPDATE
 
     override fun intent(context: Context): Intent? =
         Intent(Intent.ACTION_VIEW)
             .setData(Uri.parse("https://github.com/AyakaUI"))
 
-    override fun isAvailable(context: Context) = context.getVersion().isNotEmpty()
+    override fun isAvailable(context: Context): Boolean =
+        getVersion(context).isNotEmpty()
 
-    override fun getSummary(context: Context) = context.getVersion()
+    override fun getSummary(context: Context): CharSequence =
+        getVersion(context)
 
-    private fun Context.getVersion(): String =
-        SystemProperties.get(KEY_AYAKA_VERSION, getString(R.string.unknown))
+    private fun getVersion(context: Context): String =
+        SystemProperties.get(
+            KEY_AYAKA_VERSION,
+            context.getString(R.string.unknown)
+        )
 
     override fun bind(preference: Preference, metadata: PreferenceMetadata) {
         super.bind(preference, metadata)
