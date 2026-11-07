@@ -22,4 +22,14 @@
 
     <!-- Whether to show the search box in the Setup Wizard locale picker. -->
     <bool name="config_show_setuplocalepicker_region_searchbox">true</bool>
+
+    <!-- Whether the face HAL supports the require attention feature -->
+    <bool name="config_face_attention_supported">true</bool>
+
+    <!-- Whether Settings should open a separate camera preview during face enrollment -->
+    <bool name="config_face_enroll_hal_owns_camera">false</bool>
+
+    <!-- HAL-owned face preview size, must match a supported camera size -->
+    <integer name="face_preview_width">1080</integer>
+    <integer name="face_preview_height">1080</integer>
 </resources>
