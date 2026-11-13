@@ -124,6 +124,12 @@
         <com.android.settings.spa.preference.ComposePreference
             android:key="developer_options"
             settings:controller="com.android.settings.system.DeveloperOptionsController"/>
+
+        <Preference
+            android:key="spoofing_settings"
+            android:title="@string/spoofing_title"
+            android:summary="@string/spoofing_summary"
+            android:fragment="com.android.settings.development.spoof.SpoofingSettings" />
     </PreferenceCategory>
 
     <PreferenceCategory
